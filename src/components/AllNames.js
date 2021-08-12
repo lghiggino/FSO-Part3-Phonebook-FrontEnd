@@ -1,6 +1,6 @@
 import PersonLi from "./PersonLi"
 
-export default function AllNames({ persons, nameError, wrongName, setPersons, nameEditSuccess }) {
+export default function AllNames({ persons, nameError, wrongName, phoneError, setPersons, nameEditSuccess }) {
     return (
         <>
             <h2>Names</h2>
@@ -12,6 +12,11 @@ export default function AllNames({ persons, nameError, wrongName, setPersons, na
             {nameError &&
                 <div>
                     <p className={"error"}>{wrongName}'s number was not changed</p>
+                </div>
+            }
+            {phoneError &&
+                <div>
+                    <p className={"error"}>Must input a number</p>
                 </div>
             }
             <ul>

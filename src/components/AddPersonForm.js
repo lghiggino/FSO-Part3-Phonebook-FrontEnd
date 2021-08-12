@@ -1,7 +1,7 @@
 import axios from "axios"
 import personService from "../services/persons"
 
-export default function AddPersonForm({ persons, newName, newPhone, setPersons, setNewName, setNameError, setWrongName, setNewPhone, setNameEditSuccess }) {
+export default function AddPersonForm({ persons, newName, newPhone, setPersons, setNewName, setNameError, setPhoneError, setWrongName, setNewPhone, setNameEditSuccess,}) {
 
     const handlePersonChange = (event) => {
         setNewName(event.target.value)
@@ -13,6 +13,14 @@ export default function AddPersonForm({ persons, newName, newPhone, setPersons, 
 
     const addPerson = (event) => {
         event.preventDefault()
+
+        if (!newName) {
+            setNameError(true)
+        }
+
+        if (!newPhone) {
+            setPhoneError(true)
+        }
         if (persons.some(el => el.name === newName)) {
             alert(`Names must be unique. ${newName} was not saved`)
             setNameError(true)
@@ -68,6 +76,7 @@ export default function AddPersonForm({ persons, newName, newPhone, setPersons, 
         setNewName("")
         setNewPhone("")
         setNameError(false)
+        setPhoneError(false)
     }
 
     return (

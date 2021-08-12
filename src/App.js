@@ -15,6 +15,7 @@ function App() {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState("")
   const [nameError, setNameError] = useState(false)
+  const [phoneError, setPhoneError] = useState(false)
   const [nameEditSuccess, setNameEditSuccess] = useState(false)
   const [wrongName, setWrongName] = useState("")
   const [newPhone, setNewPhone] = useState("")
@@ -36,12 +37,14 @@ function App() {
       <AddPersonForm
         persons={persons}
         newName={newName}
-        nameError={nameError}
-        wrongName={wrongName}
+        // nameError={nameError}
+        // phoneError={phoneError}
+        // wrongName={wrongName}
         newPhone={newPhone}
         setPersons={setPersons}
         setNewName={setNewName}
         setNameError={setNameError}
+        setPhoneError={setPhoneError}
         setWrongName={setWrongName}
         setNewPhone={setNewPhone}
         setNameEditSuccess={setNameEditSuccess}
@@ -59,7 +62,7 @@ function App() {
         setShowAll={setShowAll}
       />
 
-      <AllNames persons={persons} nameError={nameError} wrongName={wrongName} setPersons={setPersons} nameEditSuccess={nameEditSuccess} />
+      <AllNames persons={persons} nameError={nameError} wrongName={wrongName} phoneError={phoneError} setPersons={setPersons} nameEditSuccess={nameEditSuccess} />
 
       <FilteredNames filteredPersonsArray={filteredPersonsArray} filterError={filterError} setPersons={setPersons}/>
 
