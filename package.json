@@ -15,7 +15,7 @@
   "scripts": {
     "start": "REACT_APP_NOT_SECRET_CODE=/api/persons react-scripts start",
     "dev": "concurrently \"REACT_APP_NOT_SECRET_CODE=http://localhost:3004/api/persons react-scripts start\" \"cd ../backend && npm run dev\"",
-    "dev:heroku": "REACT_APP_NOT_SECRET_CODE=https://stark-temple-23512.herokuapp.com/api/persons react-scripts start",
+    "dev:heroku": "REACT_APP_NOT_SECRET_CODE=https://ancient-dusk-31362.herokuapp.com/api/persons react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

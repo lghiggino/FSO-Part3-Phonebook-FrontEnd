@@ -41,7 +41,7 @@ function App() {
       {process.env.NODE_ENV === "development" &&
         <div>
           <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small>
-          <br/>
+          <br />
           <small>{JSON.stringify(process.env, null, 4)}</small>
         </div>
       }
