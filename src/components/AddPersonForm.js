@@ -1,7 +1,6 @@
-import axios from "axios"
 import personService from "../services/persons"
 
-export default function AddPersonForm({ persons, newName, newPhone, setPersons, setNewName, setNameError, setPhoneError, setWrongName, setNewPhone, setNameEditSuccess,}) {
+export default function AddPersonForm({ persons, newName, newPhone, setPersons, setNewName, setNameError, setPhoneError, setWrongName, setNewPhone, setNameEditSuccess, }) {
 
     const handlePersonChange = (event) => {
         setNewName(event.target.value)
@@ -32,35 +31,6 @@ export default function AddPersonForm({ persons, newName, newPhone, setPersons, 
             setNewName("")
             setNewPhone("")
             return
-            // let numberSubstitution = window.confirm(`${newName} is already in the phone book. Replace the old number with ${newPhone}?`)
-            // if (numberSubstitution) {
-            //     const singlePerson = persons.find(p => p.name === newName)
-            //     const changedPerson = { ...singlePerson, number: newPhone }
-
-            //     // se o nome já existe - PUT
-            //     personService.updateNumber(changedPerson.id, changedPerson).then(response => {
-            //         setPersons(persons.map(person => person.id !== response.data.id ? person : response.data))
-            //     }).then(nothing => {
-            //         setNameEditSuccess(true)
-            //         setNameError(false)
-            //         setTimeout(() => {
-            //             setNameEditSuccess(false)
-            //         }, 5000);
-            //         return
-            //     })
-            // }
-            // else {
-            //     setNameError(true)
-            //     setTimeout(() => { 
-            //         setNameError(false)
-            //     }, 5000)
-            //     setNameEditSuccess(false)
-            //     setWrongName(newName)
-            //     setNewName("")
-            //     setNewPhone("")
-            //     return
-
-            // }
         }
 
         const fullPersonData = {
@@ -70,9 +40,23 @@ export default function AddPersonForm({ persons, newName, newPhone, setPersons, 
 
         console.log(fullPersonData)
         // se é um novo nome - POST
-        personService.create(fullPersonData).then(response => {
-            setPersons(persons.concat(response.data))
-        })
+        try {
+            personService.create(fullPersonData).then(response => {
+                setPersons(persons.concat(response.data))
+            })
+        } catch (error) {
+            console.log("bateiu aqui na validação de erros")
+            if (error.message.includes("number")) {
+                setPhoneError(true)
+            } else if (error.message.includes("name missing")) {
+                setNameError(true)
+            }
+        } finally {
+            setTimeout(() => {
+                setPhoneError(false)
+                setNameError(false)
+            }, 4000)
+        }
         setNewName("")
         setNewPhone("")
         setNameError(false)

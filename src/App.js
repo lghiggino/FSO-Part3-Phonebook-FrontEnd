@@ -34,6 +34,9 @@ function App() {
     <div className="App">
       <h2>Phonebook</h2>
 
+      {nameError && <div>Name Error</div>}
+      {phoneError && <div>Phone Value Error</div>}
+
       <AddPersonForm
         persons={persons}
         newName={newName}
