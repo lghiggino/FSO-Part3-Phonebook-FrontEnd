@@ -34,8 +34,17 @@ function App() {
     <div className="App">
       <h2>Phonebook</h2>
 
+
       {nameError && <div>Name Error</div>}
       {phoneError && <div>Phone Value Error</div>}
+
+      {process.env.NODE_ENV === "development" &&
+        <div>
+          <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small>
+          <br/>
+          <small>{JSON.stringify(process.env, null, 4)}</small>
+        </div>
+      }
 
       <AddPersonForm
         persons={persons}
@@ -67,7 +76,7 @@ function App() {
 
       <AllNames persons={persons} nameError={nameError} wrongName={wrongName} phoneError={phoneError} setPersons={setPersons} nameEditSuccess={nameEditSuccess} />
 
-      <FilteredNames filteredPersonsArray={filteredPersonsArray} filterError={filterError} setPersons={setPersons}/>
+      <FilteredNames filteredPersonsArray={filteredPersonsArray} filterError={filterError} setPersons={setPersons} />
 
     </div>
   );

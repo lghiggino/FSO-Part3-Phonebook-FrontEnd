@@ -1,5 +1,5 @@
 import axios from "axios"
-const baseUrl = "http://localhost:3004/api/persons"
+const baseUrl = process.env.REACT_APP_NOT_SECRET_CODE
 //"/api/persons"
 //"http://localhost:3004/api/persons"
 //"https://stark-temple-23512.herokuapp.com/api/persons"
